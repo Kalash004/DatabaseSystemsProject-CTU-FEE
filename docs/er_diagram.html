@@ -1,0 +1,83 @@
+<ul>
+  <li>
+    Osoba (<u>Evidenční číslo pojištěnce</u>, Jméno, Příjmení, Datum narození,
+    Město, Ulice, Stát, Číslo nemocnice)
+  </li>
+
+  <li>Místnost (<u>Číslo místnosti, Barva místnosti, Oddělení</u>)</li>
+
+  <li>Úkon (<u>Název úkonu</u>, Lék)</li>
+
+  <li>
+    Lůžko (<u>Fyzické číslo, Číslo místnosti</u>, Důležitost lůžka)
+    <ul>
+      <li>FK: (Číslo místnosti) ⊆ Místnost(Číslo místnosti)</li>
+    </ul>
+  </li>
+
+  <li>
+    Doktor (<u>Evidenční číslo pojištěnce</u>,
+    <u>IČL, Evidenční číslo ČLK, Identifikátor NRZP</u>, Specializace)
+    <ul>
+      <li>
+        FK: (Evidenční číslo pojištěnce) ⊆ Osoba(Evidenční číslo pojištěnce)
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    Pacient (<u>Evidenční číslo pojištěnce</u>, <u>Fyzické číslo</u>, Krevní
+    skupina)
+    <ul>
+      <li>
+        FK: (Evidenční číslo pojištěnce) ⊆ Osoba(Evidenční číslo pojištěnce)
+      </li>
+      <li>FK: (Fyzické číslo) ⊆ Lůžko(Fyzické číslo)</li>
+    </ul>
+  </li>
+
+  <li>
+    Dohlížení_doktorů (<u>Dohlížející_doktor, Dohližený_doktor</u>)
+    <ul>
+      <li>FK: (Dohlížející_doktor) ⊆ Doktor(Evidenční číslo pojištěnce)</li>
+      <li>FK: (Dohližený_doktor) ⊆ Doktor(Evidenční číslo pojištěnce)</li>
+    </ul>
+  </li>
+
+  <li>
+    Kvalifikace_doktora (<u>Evidenční číslo pojištěnce, Název úkonu</u>)
+    <ul>
+      <li>
+        FK: (Evidenční číslo pojištěnce) ⊆ Doktor(Evidenční číslo pojištěnce)
+      </li>
+      <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
+    </ul>
+  </li>
+
+  <li>
+    Zdravotní_karta (<u>Číslo chorobopisu</u>, Stav, Datum založení, Evidenční
+    číslo pojištěnce)
+    <ul>
+      <li>
+        FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    Provedení_úkonu (<u
+      >Evidenční číslo pojištěnce_pacient, Čas provedení, Název úkonu</u
+    >, Datum, Čas, Evidenční číslo pojištěnce_doktor)
+    <ul>
+      <li>
+        FK: (Evidenční číslo pojištěnce_pacient) ⊆ Pacient(Evidenční číslo
+        pojištěnce)
+      </li>
+      <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
+      <li>
+        FK: (Evidenční číslo pojištěnce_doktor) ⊆ Doktor(Evidenční číslo
+        pojištěnce)
+      </li>
+    </ul>
+  </li>
+</ul>
