@@ -22,7 +22,7 @@
   </li>
 
   <li>
-    Lék (<u>Název úkonu</u>, <u>Lék</u>)
+    Lék (<u>Název léku, Název úkonu</u>)
     <ul>
       <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
     </ul>
@@ -39,18 +39,16 @@
   </li>
 
   <li>
-    Pacient (<u>Evidenční číslo pojištěnce</u>, <u>Fyzické číslo</u>, Krevní
-    skupina)
+    Pacient (<u>Evidenční číslo pojištěnce</u>, Krevní skupina)
     <ul>
       <li>
         FK: (Evidenční číslo pojištěnce) ⊆ Osoba(Evidenční číslo pojištěnce)
       </li>
-      <li>FK: (Fyzické číslo) ⊆ Lůžko(Fyzické číslo)</li>
     </ul>
   </li>
 
   <li>
-    Specializace (<u>Evidenční číslo pojištěnce</u>, <u>Specializace</u>)
+    Specializace (<u>Evidenční číslo pojištěnce, Specializace</u>)
     <ul>
       <li>
         FK: (Evidenční číslo pojištěnce) ⊆ Doktor(Evidenční číslo pojištěnce)
@@ -78,33 +76,27 @@
 
   <li>
     Provedení_úkonu (<u
-      >Evidenční číslo pojištěnce_pacient, Čas provedení, Název úkonu</u
-    >, Datum, Čas, Evidenční číslo pojištěnce_doktor)
+      >Evidenční číslo pojištěnce, IČL, Čas provedení, Název úkonu</u
+    >, Datum, Čas)
     <ul>
       <li>
-        FK: (Evidenční číslo pojištěnce_pacient) ⊆ Pacient(Evidenční číslo
-        pojištěnce)
+        FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)
       </li>
       <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
-      <li>
-        FK: (Evidenční číslo pojištěnce_doktor) ⊆ Doktor(Evidenční číslo
-        pojištěnce)
-      </li>
+      <li>FK: (IČL) ⊆ Doktor(IČL)</li>
     </ul>
   </li>
 
   <li>
-    Je_zapsán_do_lůžka (<u
-      >Evidenční číslo pojištěnce, Fyzické číslo, Číslo Místnosti</u
-    >, Barva Místnosti, Oddělení)
+    Je_zapsán_do_lůžka (<u>Evidenční číslo pojištěnce</u>,
+    <u>Fyzické číslo, Číslo Místnosti, Barva Místnosti, Oddělení</u>)
     <ul>
       <li>
-        FK: (Evidenční číslo pojištěnce, Fyzické číslo) ⊆ Pacient(Evidenční
-        číslo pojištěnce, Fyzické číslo)
+        FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)
       </li>
       <li>
-        FK: (Fyzické číslo, Číslo Místnosti) ⊆ Lůžko(Fyzické číslo, Číslo
-        Místnosti)
+        FK: (Fyzické číslo, Číslo Místnosti, Barva Místnosti, Oddělení) ⊆
+        Lůžko(Fyzické číslo, Číslo Místnosti, Barva Místnosti, Oddělení)
       </li>
     </ul>
   </li>
