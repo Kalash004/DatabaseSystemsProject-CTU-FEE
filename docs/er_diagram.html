@@ -29,8 +29,7 @@
   </li>
 <br>
   <li>
-    Doktor (<u>Evidenční číslo pojištěnce</u>,
-    <u>IČL, Evidenční číslo ČLK, Identifikátor NRZP</u>, Specializace)
+    Doktor (<u>Evidenční číslo pojištěnce</u>, <u>IČL</u>, <u>Evidenční číslo ČLK</u>, <u>Identifikátor NRZP</u>)
     <ul>
       <li>
         FK: (Evidenční číslo pojištěnce) ⊆ Osoba(Evidenční číslo pojištěnce)
@@ -82,8 +81,7 @@
         FK: (Evidenční číslo pojištěnce pacient) ⊆ Pacient(Evidenční číslo pojištěnce)
       </li>
       <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
-      <li>FK: (Evidenční číslo pojištěnce doktor, IČL, Evidenční číslo ČLK, Identifikátor NRZP) ⊆ Doktor(Evidenční číslo
-        pojištěnce, IČL, Evidenční číslo ČLK, Identifikátor NRZP)</li>
+      <li>FK: (Evidenční číslo ČLK) ⊆ Doktor(Evidenční číslo ČLK)</li>
     </ul>
   </li>
 <br>
@@ -102,21 +100,11 @@
   </li>
 <br>
   <li>
-    Vlastní (<u>Číslo chorobopisu, Evidenční číslo pojištěnce</u>)
+    Vlastní (<u>Číslo chorobopisu</u>, <u>Evidenční číslo pojištěnce</u>)
     <ul>
       <li>FK: (Číslo chorobopisu) ⊆ Zdravotní karta(Číslo chorobopisu)</li>
-      <li>
-        FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)
-      </li>
+      <li>FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)</li>
     </ul>
   </li>
   <br>
-  <li>
-    Doktor_umí_úkon (<u>Název úkonu, Evidenční číslo pojištěnce, IČL, Evidenční číslo ČLK, Identifikátor NRZP</u>)
-    <ul>
-      <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
-      <li>FK: (Evidenční číslo pojištěnce, IČL, Evidenční číslo ČLK, Identifikátor NRZP) ⊆ Doktor(Evidenční číslo
-        pojištěnce, IČL, Evidenční číslo ČLK, Identifikátor NRZP)</li>
-    </ul>
-  </li>
 </ul>
