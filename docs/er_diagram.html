@@ -3,13 +3,21 @@
     Osoba (<u>Evidenční číslo pojištěnce</u>, Jméno, Příjmení, Datum narození,
     Město, Ulice, Stát, Číslo nemocnice)
   </li>
-<br>
+  <br />
   <li>Místnost (<u>Číslo místnosti, Barva místnosti, Oddělení</u>)</li>
-<br>
-  <li>Úkon (<u>Název úkonu</u>)</li>
-<br>
-  <li>Zdravotní_karta (<u>Číslo chorobopisu</u>, Stav, Datum založení)</li>
-<br>
+  <br />
+  <li>Úkon (<u>Název úkonu</u> , Popis úkonu)</li>
+  <br />
+  <li>Zdravotní_karta (<u>Číslo karty</u>, Stav, Datum založení)</li>
+  <br />
+  <li>
+    Chorobopis (<u>Číslo chorobopisu</u>, Od, Do, Popis chorobopisu, Číslo
+    karty)
+    <ul>
+      <li>FK: (Číslo karty) ⊆ Zdravotní_karta(Číslo karty)</li>
+    </ul>
+  </li>
+  <br />
   <li>
     Lůžko (<u>Fyzické číslo, Číslo místnosti, Barva místnosti, Oddělení</u>,
     Důležitost lůžka)
@@ -20,23 +28,24 @@
       </li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
     Lék (<u>Název léku, Název úkonu</u>)
     <ul>
       <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
-    Doktor (<u>Evidenční číslo pojištěnce</u> , <u>IČL</u> , <u>Evidenční číslo ČLK</u> , <u>Identifikátor NRZP</u>)
+    Doktor (<u>Evidenční číslo pojištěnce</u> , <u>IČL</u> ,
+    <u>Evidenční číslo ČLK</u> , <u>Identifikátor NRZP</u>)
     <ul>
       <li>
         FK: (Evidenční číslo pojištěnce) ⊆ Osoba(Evidenční číslo pojištěnce)
       </li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
     Pacient (<u>Evidenční číslo pojištěnce</u>, Krevní skupina)
     <ul>
@@ -45,7 +54,7 @@
       </li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
     Specializace (<u>Evidenční číslo pojištěnce, Specializace</u>)
     <ul>
@@ -54,7 +63,7 @@
       </li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
     Dohledání (<u>Dohledávací_doktor, Dohledávaný_doktor</u>)
     <ul>
@@ -62,7 +71,7 @@
       <li>FK: (Dohledávaný_doktor) ⊆ Doktor(Evidenční číslo pojištěnce)</li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
     Kvalifikace_doktora (<u>Evidenční číslo pojištěnce, Název úkonu</u>)
     <ul>
@@ -72,21 +81,29 @@
       <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
-    Provedení_úkonu (<u>Evidenční číslo pojištěnce pacient, Datum, Čas</u> , <u>Evidenční číslo pojištěnce doktor, IČL, Evidenční číslo ČLK, Identifikátor NRZP, Datum, Čas</u> , <u>Datum, Čas, Název úkonu</u>)
+    Provedení_úkonu (<u>Evidenční číslo pojištěnce pacient, Datum, Čas</u> ,
+    <u
+      >Evidenční číslo pojištěnce doktor, IČL, Evidenční číslo ČLK,
+      Identifikátor NRZP, Datum, Čas</u
+    >
+    , <u>Datum, Čas, Název úkonu</u>)
     <ul>
       <li>
-        FK: (Evidenční číslo pojištěnce pacient) ⊆ Pacient(Evidenční číslo pojištěnce)
+        FK: (Evidenční číslo pojištěnce pacient) ⊆ Pacient(Evidenční číslo
+        pojištěnce)
       </li>
       <li>FK: (Název úkonu) ⊆ Úkon(Název úkonu)</li>
       <li>FK: (Evidenční číslo ČLK) ⊆ Doktor(Evidenční číslo ČLK)</li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
-    Je_zapsán_do_lůžka (<u>Evidenční číslo pojištěnce</u> ,
-    <u>Fyzické číslo, Číslo Místnosti, Barva Místnosti, Oddělení</u>)
+    Je_zapsán_do_lůžka (<u
+      >Evidenční číslo pojištěnce, Fyzické číslo, Číslo Místnosti, Barva
+      Místnosti, Oddělení</u
+    >)
     <ul>
       <li>
         FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)
@@ -97,13 +114,15 @@
       </li>
     </ul>
   </li>
-<br>
+  <br />
   <li>
     Vlastní (<u>Číslo chorobopisu</u> , <u>Evidenční číslo pojištěnce</u>)
     <ul>
       <li>FK: (Číslo chorobopisu) ⊆ Zdravotní karta(Číslo chorobopisu)</li>
-      <li>FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)</li>
+      <li>
+        FK: (Evidenční číslo pojištěnce) ⊆ Pacient(Evidenční číslo pojištěnce)
+      </li>
     </ul>
   </li>
-  <br>
+  <br />
 </ul>
