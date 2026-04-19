@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<DBMODEL Version="1.92" TYPE="PostgreSQL">
+
+<MODELSETTINGS MDDVERSION="1.16.0 (build 1173)" ModelProject="" ModelName="dsdiagram" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2026-04-19 14:28:36" ModelUpdated="2026-04-19 16:31:02" Description="" Annotation="" ZoomFac="75.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  NotValidConstraints = False\n  ConcurrentlyIndexes = False\n  ISQL = False\n  ExecuteAfterGeneration = True\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  EntityFontColor = clBlack\n  SPFillColor = clCream\n  SPLineColor = clNavy\n  SPFontColor = clBlack\n  ViewFillColor = clMoneyGreen\n  ViewLineColor = clNavy\n  ViewFontColor = clBlack\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  RefLabelFontColor = clBlack\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" PKColumnsFirst="0" HPageCount="5" VPageCount="5" />
+
+<DATABASE Name="Database_1" CharacterSet="" Collate="" CType="" Tablespace="" Owner="" Template="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="0" />
+
+<STAMPS>
+</STAMPS>
+
+<ROLES>
+</ROLES>
+
+<SCHEMAS>
+<SCHEMA ID="0" Name="public" Owner="" Generate="0" Comments="" System="1" ACL=""></SCHEMA>
+</SCHEMAS>
+
+<SEQUENCES>
+</SEQUENCES>
+
+<DOMAINS>
+</DOMAINS>
+
+<COMPOSITES>
+<COMPOSITE ID="10000" Name="Osoba" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1000">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10001" Name="Mistnost" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1001">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10002" Name="Ukon" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1002">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10003" Name="Zdravotni_karta" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1003">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10004" Name="Chorobopis" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1004">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10005" Name="Luzko" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1005">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10006" Name="Lek" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1006">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10007" Name="Doktor" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1007">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10008" Name="Pacient" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1008">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10009" Name="Specializace" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1009">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10010" Name="Dohledani" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1010">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10011" Name="Kvalifikace_doktora" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1011">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10012" Name="Provedeni_ukonu" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1012">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10013" Name="Je_zapsan_do_luzka" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1013">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10014" Name="Vlastni" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1014">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10015" Name="Registrovane_leky_pro_ukon" SchemaName="public" OwnerName="" Comments="" MasterTableOID="2399">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+</COMPOSITES>
+
+<SCALARS>
+</SCALARS>
+
+<ENUMS>
+</ENUMS>
+
+<TABLESPACES>
+</TABLESPACES>
+
+<METADATA>
+<ENTITIES>
+<ENTITY ID="1000" Name="Osoba" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="630" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="1" Name="osoba_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="2" Name="evidencni_cislo_pojistence" Pos="1" Datatype="1042" Type="char" Width="10" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="3" Name="jmeno" Pos="2" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="4" Name="prijmeni" Pos="3" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="5" Name="datum_narozeni" Pos="4" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="6" Name="mesto" Pos="5" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="7" Name="ulice" Pos="6" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="8" Name="stat" Pos="7" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="9" Name="cislo_nemocnice" Pos="8" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="92" />
+		<REFERENCE_BEGIN ID="98" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="1" Name="" Kind="2" Expression="" ReferenceIndex="3698" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="1"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="2" Name="" Kind="1" Expression="" ReferenceIndex="3699" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="2"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="3" Name="" Kind="0" Expression="datum_narozeni \k= CURRENT_DATE" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="4" Name="" Kind="0" Expression="datum_narozeni \g= \a1900-01-01\a" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1001" Name="Mistnost" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="180" YPos="920" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="10" Name="mistnost_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="11" Name="cislo_mistnosti" Pos="1" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="12" Name="barva_mistnosti" Pos="2" Datatype="10002" Type="\AUkon\A" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="13" Name="oddeleni" Pos="3" Datatype="10002" Type="\AUkon\A" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="20" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="5" Name="" Kind="2" Expression="" ReferenceIndex="3630" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="10"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="6" Name="" Kind="1" Expression="" ReferenceIndex="3631" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="11,12,13"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1002" Name="Ukon" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1140" YPos="920" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="14" Name="ukon_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="15" Name="nazev_ukonu" Pos="1" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="16" Name="popis_ukonu" Pos="2" Datatype="25" Type="text" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="70" Name="Registrovane_leky_pro_ukon_lek_id" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="45" />
+		<REFERENCE_BEGIN ID="51" />
+		<REFERENCE_BEGIN ID="127" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="7" Name="" Kind="2" Expression="" ReferenceIndex="3702" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="14"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="8" Name="" Kind="1" Expression="" ReferenceIndex="3703" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="15"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1003" Name="Zdravotni_karta" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="820" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="17" Name="zdravotni_karta_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="18" Name="cislo_karty" Pos="1" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="19" Name="stav" Pos="2" Datatype="10004" Type="\AChorobopis\A" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="\aaktivn\00ED\a" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="20" Name="datum_zalozeni" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="CURRENT_DATE" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="17" />
+		<REFERENCE_BEGIN ID="60" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="9" Name="" Kind="2" Expression="" ReferenceIndex="3684" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="17"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="10" Name="" Kind="1" Expression="" ReferenceIndex="3685" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="18"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="11" Name="" Kind="0" Expression="datum_zalozeni \k= CURRENT_DATE" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="12" Name="" Kind="0" Expression="datum_zalozeni \g= \a1900-01-01\a" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1004" Name="Chorobopis" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="420" YPos="370" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="21" Name="chorobopis_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="22" Name="cislo_chorobopisu" Pos="1" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="23" Name="datum_od" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="24" Name="datum_do" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="25" Name="popis_chorobopisu" Pos="4" Datatype="25" Type="text" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="26" Name="fk_zdravotni_karta_id" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="17" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="13" Name="" Kind="2" Expression="" ReferenceIndex="3628" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="21"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="14" Name="" Kind="1" Expression="" ReferenceIndex="3629" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="22"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="15" Name="" Kind="0" Expression="datum_do IS NULL OR datum_do \g datum_od" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="16" Name="" Kind="0" Expression="od \k= CURRENT_DATE" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1005" Name="Luzko" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="170" YPos="750" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="27" Name="luzko_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="28" Name="fyzicke_cislo" Pos="1" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="29" Name="fk_mistnost_id" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="30" Name="dulezitost_luzka" Pos="3" Datatype="10006" Type="\ALek\A" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="\ab\011B\017En\00E1\a" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="57" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="20" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="18" Name="" Kind="2" Expression="" ReferenceIndex="3680" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="27"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="19" Name="" Kind="1" Expression="" ReferenceIndex="3681" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="28,29"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1006" Name="Lek" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1420" YPos="920" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="31" Name="lek_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="32" Name="nazev_leku" Pos="1" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="33" Name="fk_ukon_id" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="69" Name="Registrovane_leky_pro_ukon_ukon_id" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="128" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="21" Name="" Kind="2" Expression="" ReferenceIndex="3705" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="31"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="22" Name="" Kind="1" Expression="" ReferenceIndex="3706" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="32,33"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1007" Name="Doktor" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="720" YPos="720" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="34" Name="osoba_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="36" Name="icl" Pos="1" Datatype="1042" Type="char" Width="6" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="37" Name="evidencni_cislo_clk" Pos="2" Datatype="1042" Type="char" Width="6" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="38" Name="identifikator_nrzp" Pos="3" Datatype="1042" Type="char" Width="9" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="36" />
+		<REFERENCE_BEGIN ID="40" />
+		<REFERENCE_BEGIN ID="41" />
+		<REFERENCE_BEGIN ID="44" />
+		<REFERENCE_BEGIN ID="50" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="92" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="24" Name="dok_id" Kind="2" Expression="" ReferenceIndex="3694" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="34"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="26" Name="UQ_icl" Kind="1" Expression="" ReferenceIndex="3695" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="36"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="27" Name="UQ_clk" Kind="1" Expression="" ReferenceIndex="3696" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="37"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="28" Name="UQ_nrzp" Kind="1" Expression="" ReferenceIndex="3697" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="38"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1008" Name="Pacient" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="730" YPos="540" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="39" Name="osoba_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="41" Name="evidencni_cislo_pojistence" Pos="1" Datatype="1042" Type="char" Width="10" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="42" Name="krevni_skupina" Pos="2" Datatype="1043" Type="varchar" Width="3" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="49" />
+		<REFERENCE_BEGIN ID="56" />
+		<REFERENCE_BEGIN ID="61" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="98" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="30" Name="" Kind="2" Expression="" ReferenceIndex="3700" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="39"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="32" Name="" Kind="1" Expression="" ReferenceIndex="3701" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="41"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1009" Name="Specializace" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="490" YPos="930" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="43" Name="specializace_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="44" Name="fk_osoba_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="45" Name="specializace" Pos="2" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="36" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="34" Name="" Kind="2" Expression="" ReferenceIndex="3638" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="43"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="35" Name="" Kind="1" Expression="" ReferenceIndex="3639" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="44,45"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1010" Name="Dohledani" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="650" YPos="1080" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="47" Name="dohledavaci_osoba_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="48" Name="dohledavany_osoba_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40" />
+		<REFERENCE_END ID="41" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="38" Name="" Kind="1" Expression="" ReferenceIndex="3650" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="47,48"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="39" Name="" Kind="0" Expression="fk_dohledavaci_doktor_id \k\g fk_dohledavany_doktor_id" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="115" Name="" Kind="2" Expression="" ReferenceIndex="3651" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="47,48"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1011" Name="Kvalifikace_doktora" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="920" YPos="1060" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="50" Name="doktor_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="51" Name="ukon_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="44" />
+		<REFERENCE_END ID="45" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="42" Name="" Kind="2" Expression="" ReferenceIndex="3660" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="50,51"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="43" Name="" Kind="1" Expression="" ReferenceIndex="3661" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="50,51"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1012" Name="Provedeni_ukonu" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1050" YPos="670" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="52" Name="provedeni_ukonu_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="53" Name="fk_pacient_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="54" Name="fk_doktor_id" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="55" Name="fk_ukon_id" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="56" Name="datum" Pos="4" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="57" Name="cas" Pos="5" Datatype="1083" Type="time" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="49" />
+		<REFERENCE_END ID="50" />
+		<REFERENCE_END ID="51" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="46" Name="" Kind="2" Expression="" ReferenceIndex="3674" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="52"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="47" Name="" Kind="1" Expression="" ReferenceIndex="3675" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="53,54,55,56,57"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="48" Name="" Kind="0" Expression="datum \k= CURRENT_DATE" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1013" Name="Je_zapsan_do_luzka" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="160" YPos="510" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="58" Name="je_zapsan_do_luzka_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="59" Name="fk_pacient_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="60" Name="fk_luzko_id" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="61" Name="datum_od" Pos="3" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="62" Name="datum_do" Pos="4" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="56" />
+		<REFERENCE_END ID="57" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="52" Name="" Kind="2" Expression="" ReferenceIndex="3682" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="58"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="53" Name="" Kind="1" Expression="" ReferenceIndex="3683" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="59,60,61"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="54" Name="" Kind="0" Expression="datum_do IS NULL OR datum_do \g datum_od" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="55" Name="" Kind="0" Expression="datum_od \k= CURRENT_TIMESTAMP" ReferenceIndex="0" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT=""></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1014" Name="Vlastni" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1140" YPos="490" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="64" Name="zdravotni_karta_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="65" Name="osoba_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="60" />
+		<REFERENCE_END ID="61" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="58" Name="" Kind="2" Expression="" ReferenceIndex="3690" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="64,65"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="59" Name="UQ_zdravKarta_pacientId" Kind="1" Expression="" ReferenceIndex="3691" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="64,65"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="2399" Name="Registrovane_leky_pro_ukon" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1300" YPos="800" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="67" Name="lek_id" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="68" Name="ukon_id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="127" />
+		<REFERENCE_END ID="128" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="119" Name="" Kind="2" Expression="" ReferenceIndex="3707" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="67,68"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+</ENTITIES>
+
+<REFERENCES>
+<REFERENCE ID="17" Name="Ref_Chorobopis_to_Zdravotni_karta" SOURCE="1003" DESTINATION="1004" FKIDS="17=26\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="9" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="20" Name="Ref_Luzko_to_Mistnost" SOURCE="1001" DESTINATION="1005" FKIDS="10=29\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="5" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="36" Name="Ref_Specializace_to_Doktor" SOURCE="1007" DESTINATION="1009" FKIDS="34=44\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="24" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="40" Name="Ref_Dohledani_to_Doktor" SOURCE="1007" DESTINATION="1010" FKIDS="34=47\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="24" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="41" Name="Ref_Dohledani_to_Doktor" SOURCE="1007" DESTINATION="1010" FKIDS="34=48\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="24" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="44" Name="Ref_Kvalifikace_doktora_to_Doktor" SOURCE="1007" DESTINATION="1011" FKIDS="34=50\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="24" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="45" Name="Ref_Kvalifikace_doktora_to_Ukon" SOURCE="1002" DESTINATION="1011" FKIDS="14=51\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="7" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="49" Name="Ref_Provedeni_ukonu_to_Pacient" SOURCE="1008" DESTINATION="1012" FKIDS="39=53\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="30" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="50" Name="Ref_Provedeni_ukonu_to_Doktor" SOURCE="1007" DESTINATION="1012" FKIDS="34=54\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="24" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="51" Name="Ref_Provedeni_ukonu_to_Ukon" SOURCE="1002" DESTINATION="1012" FKIDS="14=55\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="7" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="56" Name="Ref_Je_zapsan_do_luzka_to_Pacient" SOURCE="1008" DESTINATION="1013" FKIDS="39=59\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="30" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="57" Name="Ref_Je_zapsan_do_luzka_to_Luzko" SOURCE="1005" DESTINATION="1013" FKIDS="27=60\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="18" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="60" Name="Ref_Vlastni_to_Zdravotni_karta" SOURCE="1003" DESTINATION="1014" FKIDS="17=64\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="9" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="61" Name="Ref_Vlastni_to_Pacient" SOURCE="1008" DESTINATION="1014" FKIDS="39=65\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="30" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="92" Name="Ref_Doktor_to_Osoba" SOURCE="1000" DESTINATION="1007" FKIDS="1=34\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="98" Name="Ref_Pacient_to_Osoba" SOURCE="1000" DESTINATION="1008" FKIDS="1=39\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="127" Name="Ref_Registrovane_leky_pro_ukon_to_Ukon" SOURCE="1002" DESTINATION="2399" FKIDS="14=68\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="7" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="128" Name="Ref_Registrovane_leky_pro_ukon_to_Lek" SOURCE="1006" DESTINATION="2399" FKIDS="31=67\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="21" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+</REFERENCES>
+
+<NOTES>
+</NOTES>
+
+<STOREDPROCES>
+</STOREDPROCES>
+
+<VIEWS>
+</VIEWS>
+
+</METADATA>
+</DBMODEL>
