@@ -186,10 +186,8 @@ CREATE TABLE
 CREATE TABLE
     Pacient (
         osoba_id SERIAL NOT NULL,
-        evidencni_cislo_pojistence char(10) NOT NULL,
         krevni_skupina varchar(3),
         PRIMARY KEY (osoba_id),
-        UNIQUE (evidencni_cislo_pojistence),
         CONSTRAINT Ref_Pacient_to_Osoba FOREIGN KEY (osoba_id) REFERENCES Osoba (osoba_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE
     );
 
