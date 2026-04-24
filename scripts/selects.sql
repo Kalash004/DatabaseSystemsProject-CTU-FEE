@@ -1,14 +1,11 @@
 -- =============================================================================
 -- SQL DOTAZY – Nemocniční databáze
--- Pokrývá: vnější spojení, vnitřní spojení, podmínku na data, agregaci
---          s HAVING, řazení a stránkování, množinové operace, vnořený SELECT
 -- =============================================================================
 -- -----------------------------------------------------------------------------
 -- 1. VNITŘNÍ SPOJENÍ (INNER JOIN)
 --    Seznam všech provedených úkonů s jménem pacienta, doktora a názvem úkonu
 -- -----------------------------------------------------------------------------
 SELECT
-    pu.provedeni_ukonu_id,
     pu.datum,
     pu.cas,
     pac_o.jmeno AS pacient_jmeno,
@@ -32,7 +29,6 @@ ORDER BY
 --    Všichni pacienti včetně těch, kteří ještě nebyli zapsáni na žádné lůžko
 -- -----------------------------------------------------------------------------
 SELECT
-    o.osoba_id,
     o.jmeno,
     o.prijmeni,
     p.krevni_skupina,
@@ -132,14 +128,12 @@ LIMIT
 OFFSET
     40;
 
--- stránka 3 (0-based: 0=str.1, 20=str.2, 40=str.3)
 -- -----------------------------------------------------------------------------
 -- 6. MNOŽINOVÉ OPERACE (UNION / EXCEPT / INTERSECT)
 --
 --    6a. UNION – osoby vystupující jako doktor NEBO jako pacient (nebo obojí)
 -- -----------------------------------------------------------------------------
 SELECT
-    o.osoba_id,
     o.jmeno,
     o.prijmeni,
     'doktor' AS role
@@ -148,7 +142,6 @@ FROM
     INNER JOIN Osoba o ON o.osoba_id = d.osoba_id
 UNION
 SELECT
-    o.osoba_id,
     o.jmeno,
     o.prijmeni,
     'pacient' AS role

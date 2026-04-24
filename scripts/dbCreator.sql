@@ -1,18 +1,10 @@
 -- =============================================================================
--- Diagram Name: dsdiagram
--- Created on: 19/04/2026 16:45:50
--- Diagram Version: 
+-- Give permmissions, GRANTS
 -- =============================================================================
--- =============================================================================
--- Drop existing objects
--- =============================================================================
--- 1. Allow your account to connect to his database
 GRANT CONNECT ON DATABASE kalasan1 TO syrovji1;
 
--- 2. Allow your account to use the default 'public' schema
 GRANT USAGE ON SCHEMA public TO syrovji1;
 
--- 3. Give you read/write/edit/delete access to ALL EXISTING tables
 GRANT
 SELECT
 ,
@@ -20,7 +12,6 @@ SELECT
 UPDATE,
 DELETE ON ALL TABLES IN SCHEMA public TO syrovji1;
 
--- 4. Give you the same access to any NEW tables he creates in the future
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT
 SELECT
 ,
@@ -28,6 +19,9 @@ SELECT
 UPDATE,
 DELETE ON TABLES TO syrovji1;
 
+-- =============================================================================
+-- Drop existing objects
+-- =============================================================================
 DROP TABLE IF EXISTS Registrovane_leky_pro_ukon CASCADE;
 
 DROP TABLE IF EXISTS Vlastni CASCADE;
@@ -68,6 +62,9 @@ DROP TYPE IF EXISTS oddeleni_enum CASCADE;
 
 DROP TYPE IF EXISTS barva_mistnosti_enum CASCADE;
 
+-- =============================================================================
+-- ENUMS
+-- =============================================================================
 CREATE TYPE barva_mistnosti_enum AS ENUM ('fialova', 'zelena', 'modra', 'bila');
 
 CREATE TYPE oddeleni_enum AS ENUM (
@@ -85,6 +82,9 @@ CREATE TYPE stav_enum AS ENUM ('aktivní', 'neaktivní', 'archivovaný');
 
 CREATE TYPE dulezitost_luzka_enum AS ENUM ('běžná', 'intenzivní', 'jednotka_intenzivní_péče');
 
+-- =============================================================================
+-- CREATE TABLES
+-- =============================================================================
 CREATE TABLE
     Osoba (
         osoba_id SERIAL NOT NULL,
@@ -280,8 +280,3 @@ CREATE TABLE
         CONSTRAINT Ref_Registrovane_leky_pro_ukon_to_Ukon FOREIGN KEY (ukon_id) REFERENCES Ukon (ukon_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE,
         CONSTRAINT Ref_Registrovane_leky_pro_ukon_to_Lek FOREIGN KEY (lek_id) REFERENCES Lek (lek_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE
     );
-
-select
-    *
-from
-    Doktor;
