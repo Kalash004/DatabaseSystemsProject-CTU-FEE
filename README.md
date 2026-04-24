@@ -65,3 +65,4 @@ __google docs - https://docs.google.com/document/d/1bF9JZ6MqEfWm0WBoxvJKEmGW2fET
 
 
 **Conceptual Model Diagram:** ![ER diagram](./docs/er_white_back.png)
+**Physical model:** ![Physical diagram](./docs/olap.png)
