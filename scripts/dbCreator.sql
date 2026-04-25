@@ -1,5 +1,5 @@
 -- =============================================================================
--- Give permmissions, GRANTS
+-- Give permissions, GRANTS
 -- =============================================================================
 GRANT CONNECT ON DATABASE kalasan1 TO syrovji1;
 
