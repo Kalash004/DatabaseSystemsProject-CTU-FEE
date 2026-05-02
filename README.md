@@ -62,7 +62,7 @@ The system implements a strict **Exclusive ISA** relationship between `Person`, 
 ---
 __google docs - https://docs.google.com/document/d/1bF9JZ6MqEfWm0WBoxvJKEmGW2fETQFNYmoHtITmOv0Q/edit?usp=sharing__
 
-
+https://docs.google.com/document/d/1-ORNHRvT3AhHjB5mCkCpj6KXpXX5u2Z1HJhAA63lsLs/edit?tab=t.0
 
 **Conceptual Model Diagram:** ![ER diagram](./docs/er_white_back.png)
 **Physical model:** ![Physical diagram](./docs/olap.png)
