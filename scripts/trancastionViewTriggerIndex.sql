@@ -4,26 +4,27 @@
 -- -----------------------------------------------------------------------------
 -- 1. TRANSACTION
 -- -----------------------------------------------------------------------------
-SELECT * FROM zdravotni_karta
+-- Kontrola stavu před transakcí (Stav: aktivní)
+SELECT * FROM Zdravotni_karta 
 WHERE zdravotni_karta_id = (SELECT zdravotni_karta_id FROM Vlastni WHERE osoba_id = 501);
 
 BEGIN;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
--- 1. Aktualizace stavu zdravotní karty na 'aktivní'
+-- 1. Pokus o aktualizaci stavu karty na 'neaktivní'
 UPDATE Zdravotni_karta
 SET stav = 'neaktivní'
 WHERE zdravotni_karta_id = (SELECT zdravotni_karta_id FROM Vlastni WHERE osoba_id = 501);
 
 -- 2. Zápis pacienta na lůžko
 INSERT INTO Je_zapsan_do_luzka (fk_pacient_id, fk_luzko_id, datum_od)
-VALUES (10, 5, CURRENT_TIMESTAMP);
+VALUES (501, 5, CURRENT_TIMESTAMP);
 
+-- Ruční zrušení všech změn v rámci transakce
 ROLLBACK;
 
-COMMIT;
-
-SELECT * FROM zdravotni_karta
+-- Ověření po ROLLBACKu: Stav karty zůstal 'aktivní' a zápis na lůžko neexistuje
+SELECT * FROM Zdravotni_karta 
 WHERE zdravotni_karta_id = (SELECT zdravotni_karta_id FROM Vlastni WHERE osoba_id = 501);
 
 -- -----------------------------------------------------------------------------
