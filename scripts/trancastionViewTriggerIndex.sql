@@ -78,6 +78,38 @@ VALUES (1, 5, 10, CURRENT_DATE, '14:30:00');
 -- Výsledek: ERROR: NEPOVOLENÁ OPERACE: Doktor (ID 5) nemá potřebnou kvalifikaci pro úkon (ID 10)!
 
 -- -----------------------------------------------------------------------------
+-- 3. TRIGGER
+--		- kontrola veku
+-- -----------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION fnc_kontrola_veku_pediatrie()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_vek INT;
+    v_oddeleni oddeleni_enum;
+BEGIN
+    -- Získání věku pacienta
+    SELECT EXTRACT(YEAR FROM AGE(o.datum_narozeni)) INTO v_vek
+    FROM Osoba o WHERE o.osoba_id = NEW.fk_pacient_id;
+
+    -- Získání oddělení, kam patří lůžko
+    SELECT m.oddeleni INTO v_oddeleni
+    FROM Luzko l JOIN Mistnost m ON l.fk_mistnost_id = m.mistnost_id
+    WHERE l.luzko_id = NEW.fk_luzko_id;
+
+    IF v_oddeleni = 'pediatrie' AND v_vek >= 18 THEN
+        RAISE EXCEPTION 'Na pediatrii nelze zapsat dospělého pacienta (věk: %)!', v_vek;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_kontrola_veku
+BEFORE INSERT ON Je_zapsan_do_luzka
+FOR EACH ROW EXECUTE FUNCTION fnc_kontrola_veku_pediatrie();
+
+
+-- -----------------------------------------------------------------------------
 -- 4. INDEX
 -- -----------------------------------------------------------------------------
 CREATE INDEX idx_osoba_prijmeni_jmeno ON Osoba (prijmeni, jmeno);

@@ -41,6 +41,7 @@ FROM
     Pacient p
     INNER JOIN Osoba o ON o.osoba_id = p.osoba_id
     LEFT JOIN Je_zapsan_do_luzka jzl ON jzl.fk_pacient_id = p.osoba_id
+	AND jzl.datum_do IS NULL  
     LEFT JOIN Luzko l ON l.luzko_id = jzl.fk_luzko_id
     LEFT JOIN Mistnost m ON m.mistnost_id = l.fk_mistnost_id
 ORDER BY
@@ -58,15 +59,16 @@ SELECT
     pac_o.jmeno || ' ' || pac_o.prijmeni AS pacient,
     dok_o.jmeno || ' ' || dok_o.prijmeni AS doktor,
     u.nazev_ukonu,
-    pac.krevni_skupina
+    pac.krevni_skupina,
+    s.specializace AS specializace_doktora
 FROM
     Provedeni_ukonu pu
-    INNER JOIN Pacient pac ON pac.osoba_id = pu.fk_pacient_id
-    INNER JOIN Osoba pac_o ON pac_o.osoba_id = pac.osoba_id
-    INNER JOIN Doktor dok ON dok.osoba_id = pu.fk_doktor_id
-    INNER JOIN Osoba dok_o ON dok_o.osoba_id = dok.osoba_id
-    INNER JOIN Ukon u ON u.ukon_id = pu.fk_ukon_id
-    INNER JOIN Specializace s ON s.fk_osoba_id = dok.osoba_id
+    INNER JOIN Pacient pac ON pac.osoba_id      = pu.fk_pacient_id
+    INNER JOIN Osoba pac_o ON pac_o.osoba_id    = pac.osoba_id
+    INNER JOIN Doktor dok ON dok.osoba_id      = pu.fk_doktor_id
+    INNER JOIN Osoba dok_o ON dok_o.osoba_id    = dok.osoba_id
+    INNER JOIN Ukon u ON u.ukon_id         = pu.fk_ukon_id
+    INNER JOIN Specializace s ON s.fk_osoba_id     = dok.osoba_id
 WHERE
     pu.datum >= CURRENT_DATE - INTERVAL '6 months'
     AND pac.krevni_skupina IN ('A+', '0+')
@@ -155,29 +157,27 @@ ORDER BY
 --    6b. INTERSECT – úkony, které jsou zároveň přiřazeny nějakému doktorovi
 --        (Kvalifikace_doktora) A zároveň mají registrovaný alespoň jeden lék
 SELECT
-    ukon_id
-FROM
-    Kvalifikace_doktora
-INTERSECT
-SELECT
-    ukon_id
-FROM
-    Registrovane_leky_pro_ukon
-ORDER BY
-    ukon_id;
+    u.ukon_id,
+    u.nazev_ukonu
+FROM Ukon u
+WHERE u.ukon_id IN (
+    SELECT ukon_id FROM Kvalifikace_doktora
+    INTERSECT
+    SELECT ukon_id FROM Registrovane_leky_pro_ukon
+)
+ORDER BY u.nazev_ukonu;
 
 --    6c. EXCEPT – úkony, které NEJSOU kvalifikovány žádným doktorem
 SELECT
-    ukon_id
-FROM
-    Ukon
-EXCEPT
-SELECT
-    ukon_id
-FROM
-    Kvalifikace_doktora
-ORDER BY
-    ukon_id;
+    u.ukon_id,
+    u.nazev_ukonu
+FROM Ukon u
+WHERE u.ukon_id IN (
+    SELECT ukon_id FROM Ukon
+    EXCEPT
+    SELECT ukon_id FROM Kvalifikace_doktora
+)
+ORDER BY u.nazev_ukonu;
 
 -- -----------------------------------------------------------------------------
 -- 7. VNOŘENÝ SELECT (subquery)

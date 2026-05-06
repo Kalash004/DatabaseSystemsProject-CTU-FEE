@@ -172,7 +172,7 @@ CREATE TABLE
 
 CREATE TABLE
     Doktor (
-        osoba_id SERIAL NOT NULL,
+        osoba_id INT NOT NULL,
         icl char(6) NOT NULL,
         evidencni_cislo_clk char(6) NOT NULL,
         identifikator_nrzp char(9) NOT NULL,
@@ -185,8 +185,9 @@ CREATE TABLE
 
 CREATE TABLE
     Pacient (
-        osoba_id SERIAL NOT NULL,
-        krevni_skupina varchar(3),
+        osoba_id INT NOT NULL,
+        krevni_skupina varchar(3)
+		CHECK (krevni_skupina IN ('A+','A-','B+','B-','AB+','AB-','0+','0-')),
         PRIMARY KEY (osoba_id),
         CONSTRAINT Ref_Pacient_to_Osoba FOREIGN KEY (osoba_id) REFERENCES Osoba (osoba_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE
     );
@@ -239,9 +240,9 @@ CREATE TABLE
             cas
         ),
         CHECK (datum <= CURRENT_DATE),
-        CONSTRAINT Ref_Provedeni_ukonu_to_Pacient FOREIGN KEY (fk_pacient_id) REFERENCES Pacient (osoba_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE,
-        CONSTRAINT Ref_Provedeni_ukonu_to_Doktor FOREIGN KEY (fk_doktor_id) REFERENCES Doktor (osoba_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE,
-        CONSTRAINT Ref_Provedeni_ukonu_to_Ukon FOREIGN KEY (fk_ukon_id) REFERENCES Ukon (ukon_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE
+        CONSTRAINT Ref_Provedeni_ukonu_to_Pacient FOREIGN KEY (fk_pacient_id) REFERENCES Pacient (osoba_id) MATCH SIMPLE ON DELETE RESTRICT ON UPDATE CASCADE,
+        CONSTRAINT Ref_Provedeni_ukonu_to_Doktor FOREIGN KEY (fk_doktor_id) REFERENCES Doktor (osoba_id) MATCH SIMPLE ON DELETE RESTRICT ON UPDATE CASCADE,
+        CONSTRAINT Ref_Provedeni_ukonu_to_Ukon FOREIGN KEY (fk_ukon_id) REFERENCES Ukon (ukon_id) MATCH SIMPLE ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
 CREATE TABLE
@@ -267,6 +268,8 @@ CREATE TABLE
         zdravotni_karta_id int4 NOT NULL,
         osoba_id int4 NOT NULL,
         PRIMARY KEY (zdravotni_karta_id, osoba_id),
+		CONSTRAINT UQ_vlastni_karta   UNIQUE (zdravotni_karta_id),
+		CONSTRAINT UQ_vlastni_pacient UNIQUE (osoba_id),
         CONSTRAINT UQ_zdravKarta_pacientId UNIQUE (zdravotni_karta_id, osoba_id),
         CONSTRAINT Ref_Vlastni_to_Zdravotni_karta FOREIGN KEY (zdravotni_karta_id) REFERENCES Zdravotni_karta (zdravotni_karta_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE,
         CONSTRAINT Ref_Vlastni_to_Pacient FOREIGN KEY (osoba_id) REFERENCES Pacient (osoba_id) MATCH SIMPLE ON DELETE CASCADE ON UPDATE CASCADE
