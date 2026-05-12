@@ -1,13 +1,16 @@
+import DAO.OsobaDAO;
 import entities.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        // SETUP
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
 
@@ -101,5 +104,36 @@ public class Main {
             System.out.println("specializace: " + s.getSpecializace() + " for doc: "+ s.getFkOsoba().getEvidencniCisloClk());
         }
 
+        // TODO: the rest of tables
+
+        // DAO:
+        OsobaDAO osobaDAO = new OsobaDAO(em);
+
+        // --- CREATE (Insert) ---
+        Osoba novaOsoba = new Osoba();
+        novaOsoba.setEvidencniCisloPojistence("1234567890");
+        novaOsoba.setJmeno("Jan");
+        novaOsoba.setPrijmeni("Novák");
+        novaOsoba.setDatumNarozeni(LocalDate.of(1985, 5, 20));
+        novaOsoba.setMesto("Praha");
+
+        osobaDAO.insert(novaOsoba);
+        System.out.println("Vložena osoba s ID: " + novaOsoba.getId());
+        // --- READ (Select) ---
+        // Get by ID
+        Osoba nalezenaOsoba = osobaDAO.selectById(novaOsoba.getId());
+        System.out.println("Nalezena osoba: " + nalezenaOsoba.getJmeno() + " " + nalezenaOsoba.getPrijmeni());
+        // Get by custom method we added to OsobaDAO
+        Osoba podleCisla = osobaDAO.selectByEvidencniCislo("1234567890");
+        System.out.println("Nalezena podle čísla: " + podleCisla.getMesto());
+        // --- UPDATE ---
+        nalezenaOsoba.setMesto("Brno");
+        osobaDAO.update(nalezenaOsoba);
+        // --- DELETE ---
+        osobaDAO.deleteById(nalezenaOsoba.getId());
+
+        // CLEANUP
+        em.close();
+        emf.close();
     }
 }
