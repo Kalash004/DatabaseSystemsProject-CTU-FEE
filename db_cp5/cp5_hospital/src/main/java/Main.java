@@ -56,7 +56,7 @@ public class Main {
         List<Luzko> luzkos = em.createQuery("SELECT o FROM Luzko o").getResultList();
         System.out.println("Luzkos (JPQL)");
         for (Luzko l : luzkos) {
-            System.out.println("luzko: " + l.getFyzickeCislo());
+            System.out.println("luzko: " + l.getFyzickeCislo() + " " + l.getDulezitostLuzka());
         }
 
         List<JeZapsanDoLuzka> jeZapsanDoLuzkas  = em.createQuery("SELECT o FROM JeZapsanDoLuzka o").getResultList();
@@ -65,12 +65,41 @@ public class Main {
             System.out.println("zapsan: "+ j.getFkPacient().getOsoba().getPrijmeni() + " on: " + j.getFkLuzko().getFyzickeCislo());
         }
 
+        List<Ukon> ukons = em.createQuery("SELECT o FROM Ukon o").getResultList();
+        System.out.println("Ukons (JPQL)");
+        for (Ukon u : ukons) {
+            System.out.println("ukon: " + u.getNazevUkonu() + ", " + u.getPopisUkonu());
+        }
 
-//
-//        List<Specializace> specializaces = em.createQuery("SELECT o FROM Specializace o").getResultList();
-//        System.out.println("Specializaces (JPQL)");
-//        for (Specializace s : specializaces) {
-//            System.out.println("spec: " + s.getSpecializace() + " for doc: "+ s.getFkOsoba().getEvidencniCisloClk());
-//        }
+        List<Mistnost> mistnosts2 = em.createQuery("SELECT o FROM Mistnost o").getResultList();
+        System.out.println("Mistnosts (JPQL)");
+        for (Mistnost m : mistnosts2) {
+            System.out.println("mistnost: " + m.getCisloMistnosti() + ", " + m.getBarvaMistnosti() + ", " + m.getOddeleni());
+        }
+
+        List<ZdravotniKarta> zdravotniKartas = em.createQuery("SELECT o FROM ZdravotniKarta o").getResultList();
+        System.out.println("ZdravotniKartas (JPQL)");
+        for (ZdravotniKarta z : zdravotniKartas) {
+            System.out.println("zdravotni karta: " + z.getCisloKarty() + ", " + z.getDatumZalozeni() + ", " + z.getStav());
+        }
+
+        List<Chorobopis> chorobopises = em.createQuery("SELECT o FROM Chorobopis o").getResultList();
+        System.out.println("Chorobopis (JPQL)");
+        for (Chorobopis c : chorobopises) {
+            System.out.println("chorobopis: " + c.getCisloChorobopisu() + ", " + c.getPopisChorobopisu() + ", " + c.getFkZdravotniKarta().getCisloKarty());
+        }
+
+        List<Lek> leks = em.createQuery("SELECT o FROM Lek o").getResultList();
+        System.out.println("Leks (JPQL)");
+        for (Lek l : leks) {
+            System.out.println("lek: " + l.getNazevLeku());
+        }
+
+        List<Specializace> specializaces = em.createQuery("SELECT o FROM Specializace o").getResultList();
+        System.out.println("Specializaces (JPQL)");
+        for (Specializace s : specializaces) {
+            System.out.println("specializace: " + s.getSpecializace() + " for doc: "+ s.getFkOsoba().getEvidencniCisloClk());
+        }
+
     }
 }

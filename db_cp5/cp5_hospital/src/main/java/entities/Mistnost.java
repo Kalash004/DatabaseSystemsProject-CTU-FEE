@@ -1,5 +1,9 @@
 package entities;
 
+import entities.converters.BarvaMistnostiConverter;
+import entities.converters.OddeleniConverter;
+import entities.enums.BarvaMistnostiEnum;
+import entities.enums.OddeleniEnum;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +17,14 @@ public class Mistnost {
 
     @Column(name = "cislo_mistnosti", nullable = false, length = 20)
     private String cisloMistnosti;
+
+    @Column(name = "barva_mistnosti", columnDefinition = "barva_mistnosti_enum")
+    @Convert(converter = BarvaMistnostiConverter.class)
+    private BarvaMistnostiEnum barvaMistnosti;
+
+    @Column(name = "oddeleni", columnDefinition = "oddeleni_enum")
+    @Convert(converter = OddeleniConverter.class)
+    private OddeleniEnum oddeleni;
 
     public Integer getId() {
         return id;
@@ -30,16 +42,19 @@ public class Mistnost {
         this.cisloMistnosti = cisloMistnosti;
     }
 
-/*
- TODO [Reverse Engineering] create field to map the 'barva_mistnosti' column
- Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "barva_mistnosti", columnDefinition = "barva_mistnosti_enum not null")
-    private Object barvaMistnosti;
-*/
-/*
- TODO [Reverse Engineering] create field to map the 'oddeleni' column
- Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "oddeleni", columnDefinition = "oddeleni_enum not null")
-    private Object oddeleni;
-*/
+    public BarvaMistnostiEnum getBarvaMistnosti() {
+        return barvaMistnosti;
+    }
+
+    public void setBarvaMistnosti(BarvaMistnostiEnum barvaMistnosti) {
+        this.barvaMistnosti = barvaMistnosti;
+    }
+
+    public OddeleniEnum getOddeleni() {
+        return oddeleni;
+    }
+
+    public void setOddeleni(OddeleniEnum oddeleni) {
+        this.oddeleni = oddeleni;
+    }
 }
