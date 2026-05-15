@@ -1,24 +1,24 @@
 package entities.converters;
 
-import entities.enums.DulezitostLuzkaEnum;
+import entities.enums.BarvaMistnostiEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-@Converter(autoApply = true)
-public class DulezitostLuzkaConverter implements AttributeConverter<DulezitostLuzkaEnum, String> {
+public class BarvaMistnostiConverter implements AttributeConverter<BarvaMistnostiEnum, String> {
 
     @Override
-    public String convertToDatabaseColumn(DulezitostLuzkaEnum attribute) {
+    public String convertToDatabaseColumn(BarvaMistnostiEnum attribute) {
         if (attribute == null) return null;
         return attribute.getValue();
     }
 
     @Override
-    public DulezitostLuzkaEnum convertToEntityAttribute(String dbData) {
+    public BarvaMistnostiEnum convertToEntityAttribute(String dbData) {
         if (dbData == null) return null;
-        for (DulezitostLuzkaEnum e : DulezitostLuzkaEnum.values()) {
+        for (BarvaMistnostiEnum e : BarvaMistnostiEnum.values()) {
             if (e.getValue().equals(dbData)) return e;
         }
         throw new IllegalArgumentException("Unknown value: " + dbData);
     }
+
 }
