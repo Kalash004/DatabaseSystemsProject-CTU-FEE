@@ -5,12 +5,18 @@
              version="3.2">
     <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>entities.Chorobopis</class>
         <class>entities.Doktor</class>
+        <class>entities.JeZapsanDoLuzka</class>
+        <class>entities.Lek</class>
+        <class>entities.Luzko</class>
+        <class>entities.Mistnost</class>
         <class>entities.Osoba</class>
         <class>entities.Pacient</class>
-        <class>entities.Mistnost</class>
-        <class>entities.Luzko</class>
-        <class>entities.JeZapsanDoLuzka</class>
+        <class>entities.ProvedeniUkonu</class>
+        <class>entities.Specializace</class>
+        <class>entities.Ukon</class>
+        <class>entities.ZdravotniKarta</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
         <validation-mode>AUTO</validation-mode>
@@ -20,7 +26,6 @@
             <property name="jakarta.persistence.jdbc.user" value="kalasan1"/>
             <property name="jakarta.persistence.jdbc.password" value="El!3ik2B#11"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
         </properties>
     </persistence-unit>
 </persistence>

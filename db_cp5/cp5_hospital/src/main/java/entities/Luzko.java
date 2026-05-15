@@ -3,6 +3,7 @@ package entities;
 import entities.converters.DulezitostLuzkaConverter;
 import entities.enums.DulezitostLuzkaEnum;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -20,6 +21,7 @@ public class Luzko {
 
     @Column(name = "dulezitost_luzka", columnDefinition = "dulezitost_luzka_enum")
     @Convert(converter = DulezitostLuzkaConverter.class)
+    @org.hibernate.annotations.ColumnTransformer(write = "?::dulezitost_luzka_enum")
     private DulezitostLuzkaEnum dulezitostLuzka;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

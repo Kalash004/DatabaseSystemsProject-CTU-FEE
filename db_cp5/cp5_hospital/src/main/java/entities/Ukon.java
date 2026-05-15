@@ -2,6 +2,9 @@ package entities;
 
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "ukon")
 public class Ukon {
@@ -16,6 +19,17 @@ public class Ukon {
 
     @Column(name = "popis_ukonu", nullable = false, length = Integer.MAX_VALUE)
     private String popisUkonu;
+
+    @ManyToMany
+    @JoinTable(
+            name = "registrovane_leky_pro_ukon",
+            joinColumns = @JoinColumn(name = "ukon_id"),
+            inverseJoinColumns = @JoinColumn(name = "lek_id")
+    )
+    private Set<Lek> registrovaneLeky = new LinkedHashSet<>();
+
+    @ManyToMany(mappedBy = "kvalifikace")
+    private Set<Doktor> kvalifikovaniDoktori = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -39,6 +53,22 @@ public class Ukon {
 
     public void setPopisUkonu(String popisUkonu) {
         this.popisUkonu = popisUkonu;
+    }
+
+    public Set<Lek> getRegistrovaneLeky() {
+        return registrovaneLeky;
+    }
+
+    public void setRegistrovaneLeky(Set<Lek> registrovaneLeky) {
+        this.registrovaneLeky = registrovaneLeky;
+    }
+
+    public Set<Doktor> getKvalifikovaniDoktori() {
+        return kvalifikovaniDoktori;
+    }
+
+    public void setKvalifikovaniDoktori(Set<Doktor> kvalifikovaniDoktori) {
+        this.kvalifikovaniDoktori = kvalifikovaniDoktori;
     }
 
 }

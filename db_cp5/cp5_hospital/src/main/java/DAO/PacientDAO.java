@@ -21,4 +21,14 @@ public class PacientDAO extends BaseDAO<Pacient, Integer> {
         query.setParameter("skupina", krevniSkupina);
         return query.getResultList();
     }
+
+    /**
+     * Finds a patient by their evidencni_cislo.
+     */
+    public Pacient selectByEvidencniCislo(String evCislo) {
+        return entityManager.createQuery(
+                "SELECT p FROM Pacient p WHERE p.evidencniCisloPojistence = :evCislo", Pacient.class)
+                .setParameter("evCislo", evCislo)
+                .getResultStream().findFirst().orElse(null);
+    }
 }

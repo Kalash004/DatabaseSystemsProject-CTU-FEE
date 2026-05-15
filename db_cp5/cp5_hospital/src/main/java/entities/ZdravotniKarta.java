@@ -6,6 +6,7 @@ import entities.enums.DulezitostLuzkaEnum;
 import entities.enums.StavEnum;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
 
 import java.time.LocalDate;
 
@@ -23,6 +24,7 @@ public class ZdravotniKarta {
 
     @Column(name = "stav", columnDefinition = "stav_enum")
     @Convert(converter = StavConverter.class)
+    @org.hibernate.annotations.ColumnTransformer(write = "?::stav_enum")
     private StavEnum stav;
 
     @ColumnDefault("CURRENT_DATE")

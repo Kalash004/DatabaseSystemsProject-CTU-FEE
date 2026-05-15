@@ -2,6 +2,9 @@ package entities;
 
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "lek")
 public class Lek {
@@ -13,6 +16,9 @@ public class Lek {
 
     @Column(name = "nazev_leku", nullable = false, length = 100)
     private String nazevLeku;
+
+    @ManyToMany(mappedBy = "registrovaneLeky")
+    private Set<Ukon> ukony = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -28,6 +34,14 @@ public class Lek {
 
     public void setNazevLeku(String nazevLeku) {
         this.nazevLeku = nazevLeku;
+    }
+
+    public Set<Ukon> getUkony() {
+        return ukony;
+    }
+
+    public void setUkony(Set<Ukon> ukony) {
+        this.ukony = ukony;
     }
 
 }

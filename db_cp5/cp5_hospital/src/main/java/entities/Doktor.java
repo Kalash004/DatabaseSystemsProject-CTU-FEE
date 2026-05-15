@@ -7,20 +7,14 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "doktor")
-public class Doktor {
-    @Id
-    @Column(name = "osoba_id", nullable = false)
-    private Integer id;
-
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "osoba_id", nullable = false)
-    private Osoba osoba;
+@PrimaryKeyJoinColumn(name = "osoba_id")
+public class Doktor extends Osoba {
 
     @Column(name = "icl", nullable = false, length = 6)
     @JdbcTypeCode(Types.CHAR)
@@ -61,21 +55,15 @@ public class Doktor {
     @ManyToMany(mappedBy = "dohledavani")
     private List<Doktor> dohledavaci = new ArrayList<>(); // doctors who supervise this doctor
 
-    public Integer getId() {
-        return id;
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "kvalifikace_doktora",
+            joinColumns = @JoinColumn(name = "doktor_id"),
+            inverseJoinColumns = @JoinColumn(name = "ukon_id")
+    )
+    private Set<Ukon> kvalifikace = new LinkedHashSet<>();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public Osoba getOsoba() {
-        return osoba;
-    }
-
-    public void setOsoba(Osoba osoba) {
-        this.osoba = osoba;
-    }
 
     public String getIcl() {
         return icl;
@@ -99,6 +87,14 @@ public class Doktor {
 
     public void setIdentifikatorNrzp(String identifikatorNrzp) {
         this.identifikatorNrzp = identifikatorNrzp;
+    }
+
+    public Set<Ukon> getKvalifikace() {
+        return kvalifikace;
+    }
+
+    public void setKvalifikace(Set<Ukon> kvalifikace) {
+        this.kvalifikace = kvalifikace;
     }
 
 }

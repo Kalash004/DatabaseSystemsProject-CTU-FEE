@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "osoba")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Osoba {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "osoba_id_gen")

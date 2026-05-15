@@ -4,37 +4,28 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "pacient")
-public class Pacient {
-    @Id
-    @Column(name = "osoba_id", nullable = false)
-    private Integer id;
-
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "osoba_id", nullable = false)
-    private Osoba osoba;
+@PrimaryKeyJoinColumn(name = "osoba_id")
+public class Pacient extends Osoba {
 
     @Column(name = "krevni_skupina", length = 3)
     private String krevniSkupina;
 
-    public Integer getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "fkPacient")
+    private Set<JeZapsanDoLuzka> jeZapsanDoLuzkas = new LinkedHashSet<>();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "fkPacient")
+    private Set<ProvedeniUkonu> provedeniUkonus = new LinkedHashSet<>();
 
-    public Osoba getOsoba() {
-        return osoba;
-    }
+    @OneToOne
+    @JoinTable(name = "vlastni", joinColumns = {@JoinColumn(name = "osoba_id", unique = true)}, inverseJoinColumns = {@JoinColumn(name = "zdravotni_karta_id", unique = true)})
+    private ZdravotniKarta zdravotniKarta;
 
-    public void setOsoba(Osoba osoba) {
-        this.osoba = osoba;
-    }
+
 
     public String getKrevniSkupina() {
         return krevniSkupina;
@@ -42,6 +33,30 @@ public class Pacient {
 
     public void setKrevniSkupina(String krevniSkupina) {
         this.krevniSkupina = krevniSkupina;
+    }
+
+    public Set<JeZapsanDoLuzka> getJeZapsanDoLuzkas() {
+        return jeZapsanDoLuzkas;
+    }
+
+    public void setJeZapsanDoLuzkas(Set<JeZapsanDoLuzka> jeZapsanDoLuzkas) {
+        this.jeZapsanDoLuzkas = jeZapsanDoLuzkas;
+    }
+
+    public Set<ProvedeniUkonu> getProvedeniUkonus() {
+        return provedeniUkonus;
+    }
+
+    public void setProvedeniUkonus(Set<ProvedeniUkonu> provedeniUkonus) {
+        this.provedeniUkonus = provedeniUkonus;
+    }
+
+    public ZdravotniKarta getZdravotniKarta() {
+        return zdravotniKarta;
+    }
+
+    public void setZdravotniKarta(ZdravotniKarta zdravotniKarta) {
+        this.zdravotniKarta = zdravotniKarta;
     }
 
 }

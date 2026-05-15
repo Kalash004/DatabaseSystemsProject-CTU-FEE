@@ -16,9 +16,15 @@ public abstract class BaseDAO<T, ID> {
 
     // CREATE
     public void insert(T entity) {
-        entityManager.getTransaction().begin();
+        boolean ownTx = false;
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+            ownTx = true;
+        }
         entityManager.persist(entity);
-        entityManager.getTransaction().commit();
+        if (ownTx) {
+            entityManager.getTransaction().commit();
+        }
     }
 
     // READ (Single)
@@ -34,20 +40,32 @@ public abstract class BaseDAO<T, ID> {
 
     // UPDATE
     public T update(T entity) {
-        entityManager.getTransaction().begin();
+        boolean ownTx = false;
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+            ownTx = true;
+        }
         T mergedEntity = entityManager.merge(entity);
-        entityManager.getTransaction().commit();
+        if (ownTx) {
+            entityManager.getTransaction().commit();
+        }
         return mergedEntity;
     }
 
     // DELETE (by entity)
     public void delete(T entity) {
-        entityManager.getTransaction().begin();
+        boolean ownTx = false;
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+            ownTx = true;
+        }
         if (!entityManager.contains(entity)) {
             entity = entityManager.merge(entity);
         }
         entityManager.remove(entity);
-        entityManager.getTransaction().commit();
+        if (ownTx) {
+            entityManager.getTransaction().commit();
+        }
     }
 
     // DELETE (by ID)

@@ -36,4 +36,14 @@ public class LuzkoDAO extends BaseDAO<Luzko, Integer> {
         query.setParameter("dulezitost", dulezitost);
         return query.getResultList();
     }
+
+    /**
+     * Finds a bed by its physical number (fyzicke_cislo).
+     */
+    public Luzko selectByFyzickeCislo(String fyzickeCislo) {
+        return entityManager.createQuery(
+                "SELECT l FROM Luzko l WHERE l.fyzickeCislo = :cislo", Luzko.class)
+                .setParameter("cislo", fyzickeCislo)
+                .getResultStream().findFirst().orElse(null);
+    }
 }

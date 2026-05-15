@@ -36,4 +36,13 @@ public class DoktorDAO extends BaseDAO<Doktor, Integer> {
         }
         return List.of();
     }
+
+    /**
+     * Checks if a doctor with a specific evidencni cislo exists.
+     */
+    public boolean existsByEvidencniCislo(String evCislo) {
+        return entityManager.createQuery("SELECT count(d) FROM Doktor d WHERE d.evidencniCisloPojistence = :ev", Long.class)
+                .setParameter("ev", evCislo)
+                .getSingleResult() > 0;
+    }
 }

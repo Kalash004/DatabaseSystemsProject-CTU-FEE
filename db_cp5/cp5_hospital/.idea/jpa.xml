@@ -2,6 +2,11 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="reLastEntityCreationPackage" value="src/main/java/entities" />
-    <option name="reverseEngineeringLastDbConnectionId" value="4aded7f2-04e1-4a13-a23e-2ca1d13e2535" />
+    <option name="reverseEngineeringLastDbConnectionId" value="d7271d9f-f5fb-4d3d-a460-1e5f00d79545" />
+  </component>
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit moduleName="cp5_hospital" name="default" framework="JPA" ormUnit="cp5_hospital:default" defaultDataSourceId="d7271d9f-f5fb-4d3d-a460-1e5f00d79545" />
+    </persistence-units>
   </component>
 </project>

@@ -5,6 +5,7 @@ import entities.converters.OddeleniConverter;
 import entities.enums.BarvaMistnostiEnum;
 import entities.enums.OddeleniEnum;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
 @Table(name = "mistnost")
@@ -20,10 +21,12 @@ public class Mistnost {
 
     @Column(name = "barva_mistnosti", columnDefinition = "barva_mistnosti_enum")
     @Convert(converter = BarvaMistnostiConverter.class)
+    @org.hibernate.annotations.ColumnTransformer(write = "?::barva_mistnosti_enum")
     private BarvaMistnostiEnum barvaMistnosti;
 
     @Column(name = "oddeleni", columnDefinition = "oddeleni_enum")
     @Convert(converter = OddeleniConverter.class)
+    @org.hibernate.annotations.ColumnTransformer(write = "?::oddeleni_enum")
     private OddeleniEnum oddeleni;
 
     public Integer getId() {
