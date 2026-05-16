@@ -68,7 +68,7 @@ public class HospitalService {
      * Inserts the local zapis into database
      * This whole process is wrapped into inTransaction
      */
-    public Pacient admitPatientToBed(String evCislo, String jmeno, String prijmeni, LocalDate datumNarozeni,
+    public Pacient admitPatientToBed(String evCislo, String jmeno, String prijmeni,String bloodType, LocalDate datumNarozeni,
                                      String fyzickeCisloLuzka, boolean throwError) {
         return inTransaction(entityManager -> {
 
@@ -92,6 +92,7 @@ public class HospitalService {
                         novyPacient.setJmeno(jmeno);
                         novyPacient.setPrijmeni(prijmeni);
                         novyPacient.setDatumNarozeni(datumNarozeni);
+                        novyPacient.setKrevniSkupina(bloodType);
                         pacientDAO.insert(novyPacient);
 
                         ZdravotniKarta karta = new ZdravotniKarta();

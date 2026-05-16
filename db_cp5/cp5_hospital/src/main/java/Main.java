@@ -26,7 +26,7 @@ public class Main {
 //                testStep_2_cleanup(em);
 //                testStep_3(em);
 //                testStep_3_cleanup(em);
-//                testStep_4(em);
+                testStep_4(em);
 //                testStep_4_cleanup(em);
 
 
@@ -81,10 +81,10 @@ public class Main {
                 hs.admitPatientToBed(
                         testEvCislo,
                         "Karel",
-                        "Testovací",
+                        "Testovací","AB+",
                         LocalDate.of(1980, 1, 1),
                         volneFyzickeCislo,
-                        false
+                        true
                 );
                 // --------------------------------------------- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -194,14 +194,16 @@ public class Main {
             Luzko bedB = volnaLuzka.get(1);
 
             System.out.println("Admitting patient to Bed A (" + bedA.getFyzickeCislo() + " id: " + bedA.getId() + ")...");
-            Pacient pc = hs.admitPatientToBed(testEvCislo, "Tomas", "Prevadeny", LocalDate.of(1990, 5, 5), bedA.getFyzickeCislo(), false);
+            Pacient pc = hs.admitPatientToBed(testEvCislo, "Tomas", "Prevadeny", "AB+",LocalDate.of(1990, 5, 5), bedA.getFyzickeCislo(), false);
             System.out.println("ID pacienta: " + pc.getId());
 
             System.out.println("\nWaiting for 20 seconds before transfer (check your database now!)...");
             Thread.sleep(20000);
 
             System.out.println("Transferring patient from Bed A to Bed B (" + bedB.getFyzickeCislo() + " id: " + bedB.getId() + ")...");
+            // -------------------------------------------- !!!!!!!!!!!!!!!!!!!!!!!!
             hs.transferPatientToNewBed(testEvCislo, bedB.getFyzickeCislo());
+            // -------------------------------------------- !!!!!!!!!!!!!!!!!!!!!!!!
 
             // Verification
             em.clear();
