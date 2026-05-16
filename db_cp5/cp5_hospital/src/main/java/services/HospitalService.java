@@ -2,6 +2,7 @@ package services;
 
 import DAO.*;
 import entities.*;
+import entities.enums.StavEnum;
 import jakarta.persistence.EntityManager;
 
 import java.time.Instant;
@@ -62,13 +63,13 @@ public class HospitalService {
      * Finds specific bed based on physical number.
      * Gets all current uses of the bed
      * Finds existing patient or registers a new one
-     *  if new patient -> creates new zdravKart. joines them in 1:1
+     * if new patient -> creates new zdravKart. joines them in 1:1
      * Creates a local new zapis
      * Inserts the local zapis into database
      * This whole process is wrapped into inTransaction
      */
-    public Pacient admitNewPatientToBed(String evCislo, String jmeno, String prijmeni, LocalDate datumNarozeni,
-            String fyzickeCisloLuzka) {
+    public Pacient admitPatientToBed(String evCislo, String jmeno, String prijmeni, LocalDate datumNarozeni,
+                                     String fyzickeCisloLuzka, boolean throwError) {
         return inTransaction(entityManager -> {
 
             // Find specific bed based on physical number
@@ -103,6 +104,9 @@ public class HospitalService {
                         pacientDAO.update(novyPacient);
                         return novyPacient;
                     });
+            if (throwError) {
+                throw new RuntimeException("Testing exception");
+            }
 
             // Work with another entity (JeZapsanDoLuzka - Bed Registration)
             JeZapsanDoLuzka zapis = new JeZapsanDoLuzka();
@@ -116,7 +120,10 @@ public class HospitalService {
     }
 
     /**
-     * Alternative: 1. CP-4 Transaction operation exactly as requested
+     * Alternative: Task 1. CP-4 Transaction
+     * Attemps to update card to inactive
+     * Registers patient to a bed
+     * And rolls back the whole transaction
      */
     public Void executeCp4Transaction(String evidencniCisloPacienta, String fyzickeCisloLuzka) {
         return inTransaction(entityManager -> {
@@ -149,12 +156,15 @@ public class HospitalService {
     }
 
     /**
-     * 2. Complex INSERT with N:M relationships
+     * Task 2 Complex INSERT with N:M relationships
+     * Finds medication in database, if it does not exist, creats a new one and isnerts into the database
+     * Registers all the medications for the action
+     * Inserts the new action and medication registration into database
      */
     public Ukon createProcedureWithMedications(String nazevUkonu, String popisUkonu, List<String> nazvyLeku) {
         return inTransaction(entityManager -> {
 
-            // Convert list of medication names to entities using Optional and orElseGet
+            // Finds medication in database, if it does not exist, creats a new one and isnerts into the database
             Set<Lek> leky = nazvyLeku.stream().map(nazev -> {
                 return java.util.Optional.ofNullable(lekDAO.selectByNazev(nazev))
                         .orElseGet(() -> {
@@ -165,23 +175,62 @@ public class HospitalService {
                         });
             }).collect(Collectors.toSet());
 
+            // Creates new action, sets name and description
             Ukon novyUkon = new Ukon();
             novyUkon.setNazevUkonu(nazevUkonu);
             novyUkon.setPopisUkonu(popisUkonu);
 
+            // Registers all the medications for the action
             // Set N:M relationship
             novyUkon.setRegistrovaneLeky(leky);
 
+            // Inserts the new action and medication registration into database
             ukonDAO.insert(novyUkon);
             return novyUkon;
         });
     }
 
     /**
-     * 3. INSERT utilizing inheritance
+     * Exists only for testing purpouses dont grade (wont be called during presentation)
+     * Deletes a procedure by name and also deletes its associated medications
+     * if they are not used by any other procedure.
+     */
+    public Void deleteProcedureWithMedications(String nazevUkonu) {
+        return inTransaction(entityManager -> {
+            List<Ukon> ukony = entityManager.createQuery("SELECT u FROM Ukon u WHERE u.nazevUkonu = :nazev", Ukon.class)
+                    .setParameter("nazev", nazevUkonu)
+                    .getResultList();
+
+            for (Ukon u : ukony) {
+                // Create a copy so we can iterate over them after clearing the collection
+                Set<Lek> leky = new java.util.HashSet<>(u.getRegistrovaneLeky());
+
+                // Clear the relationship from the owning side to delete join table (registration) records
+                u.getRegistrovaneLeky().clear();
+                ukonDAO.delete(u);
+
+                // Remove orphaned medications (Lek)
+                for (Lek lek : leky) {
+                    Long count = entityManager.createQuery("SELECT COUNT(u) FROM Ukon u JOIN u.registrovaneLeky l WHERE l = :lek", Long.class)
+                            .setParameter("lek", lek)
+                            .getSingleResult();
+                    if (count == 0) {
+                        lekDAO.delete(lek);
+                    }
+                }
+            }
+            return null;
+        });
+    }
+
+    /**
+     * Task 3. INSERT utilizing inheritance
+     * Checks if doctor with same evidencni cislo exists, if yes throws exception
+     * If not creates a new local doctor with correct properties from input
+     * Inserts doktor and osoba to the database via doktorDAO
      */
     public Doktor registerNewDoctor(String evCislo, String jmeno, String prijmeni, LocalDate narozeni, String icl,
-            String evClk, String nrzp) {
+                                    String evClk, String nrzp) {
         return inTransaction(entityManager -> {
 
             boolean doctorExists = doktorDAO.existsByEvidencniCislo(evCislo);
@@ -206,38 +255,79 @@ public class HospitalService {
     }
 
     /**
-     * 4. UPDATE related data
+     * Exists only for testing purpouses dont grade (wont be called during presentation)
+     * Deletes a doctor by their registration number safely.
+     */
+    public Void removeDoctorSafely(String evCislo) {
+        return inTransaction(entityManager -> {
+            Doktor d = java.util.Optional.ofNullable(doktorDAO.selectByEvidencniCislo(evCislo))
+                    .orElseThrow(() -> new IllegalArgumentException("Doctor not found!"));
+
+            // Clear relationships
+            d.getDohledavani().clear();
+            d.getDohledavaci().clear();
+            d.getKvalifikace().clear();
+
+            doktorDAO.delete(d);
+            return null;
+        });
+    }
+
+    /**
+     * Task 4. UPDATE related data
+     * Gets patient if exists based on the evidenciCisloPacienta, if not throws exception
+     * Gets bed if exists, if not throws exception
+     * Check if the new bed is available
+     * Finds all current registered beds for this patient
+     * If no old registrations exist, throws exception
+     * Gets the old registration and ends it by setting DatumDo to current time and updates the registraion to db
+     * Creates a new bed registraition and puts to the database
+     * Checks if patient has zdravotni karta, and if its status is NEAKTIVNI, sets it to AKTIVNI indicating new registration to bed.
      */
     public JeZapsanDoLuzka transferPatientToNewBed(String evidencniCisloPacienta, String noveFyzickeCisloLuzka) {
         return inTransaction(entityManager -> {
+            // Gets patient if exists based on the evidenciCisloPacienta, if not throws exception
             Pacient pacient = java.util.Optional.ofNullable(pacientDAO.selectByEvidencniCislo(evidencniCisloPacienta))
                     .orElseThrow(() -> new IllegalArgumentException("Patient not found!"));
 
+            // Gets bed if exists, if not throws exception
             Luzko noveLuzko = java.util.Optional.ofNullable(luzkoDAO.selectByFyzickeCislo(noveFyzickeCisloLuzka))
                     .orElseThrow(() -> new IllegalArgumentException("New bed not found!"));
 
+            // Check if the new bed is available
+            List<JeZapsanDoLuzka> existujiciZapisy = jeZapsanDAO.selectActiveByLuzko(noveLuzko);
+            if (!existujiciZapisy.isEmpty()) {
+                throw new IllegalStateException("Bed " + noveLuzko.getFyzickeCislo() + " is already occupied!");
+            }
+
+            // Finds all current registered beds for this patient
             List<JeZapsanDoLuzka> aktivniZapisy = jeZapsanDAO.selectActiveByPacient(pacient);
 
+            // If no registrations exist, throws exception
             if (aktivniZapisy.isEmpty()) {
                 throw new IllegalStateException("Patient is not registered to any bed.");
             }
 
+            // Gets the registration and ends it by setting DatumDo to current time and updates the registraion to db
             JeZapsanDoLuzka staryZapis = aktivniZapisy.get(0);
             staryZapis.setDatumDo(Instant.now());
             jeZapsanDAO.update(staryZapis);
 
+            // Creates a new bed registraition and puts to the database
             JeZapsanDoLuzka novyZapis = new JeZapsanDoLuzka();
             novyZapis.setFkPacient(pacient);
             novyZapis.setFkLuzko(noveLuzko);
             novyZapis.setDatumOd(Instant.now());
             jeZapsanDAO.insert(novyZapis);
 
-            if (noveLuzko.getDulezitostLuzka() == entities.enums.DulezitostLuzkaEnum.JEDNOTKA_INTENZIVNI_PECE) {
-                ZdravotniKarta karta = pacient.getZdravotniKarta();
-                if (karta != null) {
-                    karta.setStav(entities.enums.StavEnum.AKTIVNI);
-                    zdravotniKartaDAO.update(karta);
-                }
+            // Checks if patient has zdravotni karta, and if its status is NEAKTIVNI, sets it to AKTIVNI indicating new registration to bed.
+            ZdravotniKarta karta = pacient.getZdravotniKarta();
+            if (karta == null) {
+                throw new IllegalStateException("Patient doesnt have the ZdravotniKarta");
+            }
+            if (karta.getStav() == StavEnum.NEAKTIVNI) {
+                karta.setStav(entities.enums.StavEnum.AKTIVNI);
+                zdravotniKartaDAO.update(karta);
             }
 
             return novyZapis;
@@ -245,35 +335,43 @@ public class HospitalService {
     }
 
     /**
-     * 5. DELETE operation
+     * Task 5. DELETE operation
+     * Finds patient based on evidCisloPac, if not exists throws exception
+     * If patient has actions on them, we cannot delete them to preserve the action history
+     * Deletes associated JeZapsanDoLuzka records
+     * Deletes the associated ZdravotniKarta
+     * Deletes the patient
      */
     public Void removePatientSafely(String evidencniCisloPacienta) {
         return inTransaction(entityManager -> {
+            // Finds patient based on evidCisloPac, if not exists throws exception
             Pacient pacient = java.util.Optional.ofNullable(pacientDAO.selectByEvidencniCislo(evidencniCisloPacienta))
                     .orElseThrow(() -> new IllegalArgumentException("Patient not found!"));
 
+            // Finds all the actions on the patient
             List<ProvedeniUkonu> ukony = provedeniUkonuDAO.selectByPacient(pacient);
 
+            // If patient has actions on them, we cannot delete them to preserve the action history
             if (!ukony.isEmpty()) {
                 throw new IllegalStateException(
                         "Cannot delete patient because they have existing performed procedures (RESTRICT).");
             }
 
-            // 1. Delete associated JeZapsanDoLuzka records to satisfy Hibernate memory state
+            // Deletes associated JeZapsanDoLuzka records
             List<JeZapsanDoLuzka> zapisy = jeZapsanDAO.selectByPacient(pacient);
             for (JeZapsanDoLuzka z : zapisy) {
                 jeZapsanDAO.delete(z);
             }
 
-            // 2. Delete the associated ZdravotniKarta (otherwise it becomes an orphan in the database)
+            // Deletes the associated ZdravotniKarta
             ZdravotniKarta karta = pacient.getZdravotniKarta();
             if (karta != null) {
-                // Unlink first to avoid constraint issues during flush
-                pacient.setZdravotniKarta(null); 
+                // Unlinks zdravKarta from patient to avoid constraint issues during flush
+                pacient.setZdravotniKarta(null);
                 zdravotniKartaDAO.delete(karta);
             }
 
-            // 3. Safely delete the patient
+            // Deletes the patient
             pacientDAO.delete(pacient);
             return null;
         });

@@ -3,6 +3,7 @@ package DAO;
 import entities.Doktor;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+
 import java.util.List;
 
 public class DoktorDAO extends BaseDAO<Doktor, Integer> {
@@ -44,5 +45,13 @@ public class DoktorDAO extends BaseDAO<Doktor, Integer> {
         return entityManager.createQuery("SELECT count(d) FROM Doktor d WHERE d.evidencniCisloPojistence = :ev", Long.class)
                 .setParameter("ev", evCislo)
                 .getSingleResult() > 0;
+    }
+
+    public Doktor selectByEvidencniCislo(String evCislo) {
+        TypedQuery<Doktor> query = entityManager.createQuery(
+                "SELECT d FROM Doktor d WHERE d.evidencniCisloPojistence = :ev", Doktor.class
+        );
+        query.setParameter("ev", evCislo);
+        return query.getResultStream().findFirst().orElse(null);
     }
 }
